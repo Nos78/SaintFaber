@@ -83,8 +83,8 @@
     <Folder Include="library\admin" />
     <Folder Include="library\format" />
     <Folder Include="library\league\" />
-    <Folder Include="MrData" />
-    <Folder Include="MrData\MrData" />
+    <Folder Include="SaintFaber" />
+    <Folder Include="SaintFaber\SaintFaber" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="commands\deletecallingcommand.js" />
