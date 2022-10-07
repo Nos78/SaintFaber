@@ -1,8 +1,8 @@
 /*
  * @Author: BanderDragon
  * @Date: 2019-03-10 02:54:40 
- * @Last Modified by: BanderDragon
- * @Last Modified time: 2021-06-03 03:31:15
+ * @Last Modified by: Noscere
+ * @Last Modified time: 2022-10-07 22:13:44
  */
 
 // Configure the Discord bot client
@@ -26,9 +26,12 @@ global.library = library;
 
 // Set up the logger for debug/info
 const logger = require('winston');
-const { WebPush } = require('./web-push/web-push');
-global.webPushApp = new WebPush();
-global.webPushApp.initialise();
+
+// WEB PUSH FUNCTIONALITY DISABLED FOR INITIAL IMPLEMENTATION
+// DO WE EVEN NEED THIS FOR THIS BOT? TODO
+//const { WebPush } = require('./web-push/web-push');
+//global.webPushApp = new WebPush();
+//global.webPushApp.initialise();
 
 //anotherWebApp.sendTest();
 
