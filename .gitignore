@@ -65,14 +65,14 @@ typings/
 
 
 ##
-## MrData project specific ignores
+## SaintFaber project specific ignores
 ##
 ##
 
-# MrData db configuration file
+# SaintFaber db configuration file
 config-secret.json
 
-# MrData roles directory
+# SaintFaber roles directory
 roles/
 
 # .lock files

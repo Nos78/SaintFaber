@@ -29,7 +29,7 @@ module.exports = {
 
         if (!args.length) {
             var listOfCategories = [...new Set(commands.map(item => item.category).sort())];
-            data.push('You can get general help by visiting my webpage, at **https://mrdata.thebotfactory.net**\n');
+            data.push('You can get general help by visiting my webpage, at **https://saintfaber.codin.gq**\n');
             data.push('**Here\'s a list of all my commands:**');
             for(var i=0; i < listOfCategories.length; i++) {
                 data.push(`\n\t**${listOfCategories[i]}**`);
@@ -41,8 +41,8 @@ module.exports = {
             return message.author.send(data, { split: true })
                 .then(() => {
                     if (message.channel.type === 'dm') return;
-                    message.reply(`${message.author}, I've sent you a DM with all my commands! - https://mrdata.thebotfactory.net`);
-                    //library.Helper.editWaitSuccessMessage(msg, `${message.author}, I've sent you a DM with all my commands! - https://mrdata.thebotfactory.net`);
+                    message.reply(`${message.author}, I've sent you a DM with all my commands! - https://saintfaber.codin.gq`);
+                    //library.Helper.editWaitSuccessMessage(msg, `${message.author}, I've sent you a DM with all my commands! - https://saintfaber.codin.gq`);
                 })
                 .catch(error => {
                     logger.error(`Could not send help DM to ${message.author.tag}.\n`, error);

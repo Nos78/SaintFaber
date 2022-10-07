@@ -37,7 +37,7 @@
     "firebaseSenderId": 351645999964
   },
   "webPush": {
-    "clientAddr": "https://mrdata.thebotfactory.net",
+    "clientAddr": "https://saintfaber.codin.gq",
     "clientDisplayPort": 5001
   },
   "timeBetweenAdverts": 300

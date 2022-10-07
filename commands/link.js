@@ -22,7 +22,7 @@ const library = require('../library');
         // No args needed.
         var desc = `${message.author}, you can add me to your own discord server¹ using the following link:\n\n**__Add ${library.Config.botName(message.client)}:__** ${link}`;
         desc += `\n\nFor installation help, visit my own help page (currently in development) or you may view `;
-        desc += `my top.gg² page:\n\n**__MrData help:__** https://mrdata.thebotfactory.net\n__**top.gg:**²__  `;
+        desc += `my top.gg² page:\n\n**__SaintFaber help:__** https://saintfaber.codin.gq\n__**top.gg:**²__  `;
         desc += `https://top.gg/bot/553632838486982657 \n\n**1** - in order to invite a bot, you must be the `;
         desc += `server owner or have the *manage server* privilege.\n**2** - top.gg is a popular library/cataloging `;
         desc += `website for discord bots.`

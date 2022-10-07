@@ -1,8 +1,8 @@
 /*
  * @Author: BanderDragon 
  * @Date: 2020-08-29 02:51:12 
- * @Last Modified by: BanderDragon
- * @Last Modified time: 2020-09-30 21:57:56
+ * @Last Modified by: Noscere
+ * @Last Modified time: 2022-10-07 22:36:32
  */
 
 const library = require('../library');
@@ -112,7 +112,7 @@ module.exports = {
             var guildEmbed = library.Helper.createFullMessageEmbed(`Discord Guild: ${displayName}`,
                 `*I have scoured my databanks and the Discord network. Here is all the information I could find for* **${displayName}**`,
                 `Guild Owner: ${guild.owner.displayName}`, guild.owner.user.avatarURL(), `http://discordapp.com/users/${guild.owner.user.id}`,
-                fields, message.channel, message.client, config.messageSuccessColor, `https://discord.com/developers/servers/${guild.id}`, guild.iconURL(), library.Helper.URLs.fundMrDataBanner);
+                fields, message.channel, message.client, config.messageSuccessColor, `https://discord.com/developers/servers/${guild.id}`, guild.iconURL(), library.Helper.URLs.fundSaintFaberBanner);
             var msg2 = library.Helper.editMessageEmbed(msg, guildEmbed);
 
             var msg3 = null;
