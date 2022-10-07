@@ -1,14 +1,29 @@
-# MrData
-Discord Bot for the mobile MMO game Star Trek Fleet Command, providing your alliance with an interactive scoring system using the game's player statistics, plus a whole host of alliance-related features.
+# SaintFaber
+Discord Bot for the MMORPG Albion Online
+
++ Provides your guild with an interactive data retrieval system the game's published API's, as well as the available unofficial API's from 3rd party websites, such as Albion Online 2D,
++ Plus a whole host of guild-related administration features to make the running of your discord server an absolute breeze!
 
 *This Bot uses [DiscordJS](https://discord.js.org/#/) - An object-oriented node.js wrapper for the official Discord API.*
+
+## About SaintFaber
+*This project is derived from an existing Discord Bot, MrData https://github.com/nos78/MrData which was an alliance scoring bot and discord assistant for the mobile-based MMO Star Trek Fleet Command.*
+
+**This project is currently in development and may not be functioning correctly. Please contact the author for any questions in the first instance.**
+
+NOTE: This README Has not yet been adapted for this bot and from this point onwards, this README is actually describing the steps to take to install the MrData bot and not SaintFaber - whilst there may be similarities, do NOT assume that any of these steps described below will actually work for this implementation!
+
+
+
+
+The following steps are NOT for this bot and may/or may not be correct! You have been warned...
+
 
 ##### Project requirements:
 
 + nodejs (https://nodejs.org/en/download/)
 + Postgres (https://www.postgresql.org/download/)
 + A valid discord user token (https://discordapp.com/developers/applications/me)
-
 Postgres need not be running on target machine, and there are many free hosting options.  MrData can be configured to work with any Postgres database, locally or in the cloud.
 
 **Note:** *This installation guide will not take you through the process of using the [Discord developer portal](https://discordapp.com/developers/applications/me) to obtain a valid token and connect the bot to a server.  If the portal seems complicated, there are plenty of [idiot's guides](https://anidiots.guide/first-bot) and [how-to's](https://www.digitaltrends.com/gaming/how-to-make-a-discord-bot/)  that will take you through this process, step-by-step.*
