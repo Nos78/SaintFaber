@@ -179,7 +179,7 @@ module.exports = {
     
     /**
      * Gets the discord name of the bot (each discord server can set its own nickname for the bot,
-     * so we are not always guaranteed to be called MrData - we could even change this ourselves
+     * so we are not always guaranteed to be called SaintFaber - we could even change this ourselves
      * using the discord API).
      * @param {*} client 
      * @returns {string}

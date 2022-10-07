@@ -1,8 +1,8 @@
 /*
  * @Author: BanderDragon 
  * @Date: 2020-03-29
- * @Last Modified by: BanderDragon
- * @Last Modified time: 2021-06-03 03:51:23
+ * @Last Modified by: Noscere
+ * @Last Modified time: 2022-10-07 22:42:09
  */
 
 const config = require('../../config.json');
@@ -42,9 +42,9 @@ module.exports = {
     activityType: ['Playing', 'Streaming', 'Listening to', 'Watching'],
     
     URLs: {
-        "mrdata-home": "http://mrdata.thebotfactory.net/",
-        "fundMrDataQr": "http://mrdata.thebotfactory.net/mrdata-qr-donate.png",
-        "fundMrDataBanner": "http://mrdata.thebotfactory.net/fundmrdata.png"
+        "saintfaber-home": "http://saintfaber.codin.gq/",
+        "fundSaintFaberQr": "http://saintfaber.codin.gq/saintfaber-qr-donate.png",
+        "fundSaintFaberBanner": "http://saintfaber.codin.gq/fundsaintfaber.png"
     },
 
     userCard: function(user, channel, client, member = null) {
@@ -159,8 +159,8 @@ module.exports = {
                 embed: {
                     color: color,
                     description: messageText,
-                    image: {"url": this.URLs.fundMrDataBanner},
-                    thumbnail: {"url": this.URLs.fundMrDataQr},
+                    image: {"url": this.URLs.fundSaintFaberBanner},
+                    thumbnail: {"url": this.URLs.fundSaintFaberQr},
                     fields: [
                         {"name": `${global.library.Format.randomString(global.library.Funding.titles)}`,
                         "value": `${global.library.Format.randomString(global.library.Funding.texts)}\n[Please give what you can - if you can](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CA4PYT8KZ3B32&source=url)`, "inline": false},
@@ -176,7 +176,7 @@ module.exports = {
                 embed: {
                     color: color,
                     description: messageText,
-                    image: {"url": this.URLs.fundMrDataBanner},
+                    image: {"url": this.URLs.fundSaintFaberBanner},
                 }
             }
         }

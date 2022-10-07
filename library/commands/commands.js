@@ -12,7 +12,7 @@ const fs = require('fs');
 const logger = require('winston');
 const process = require('process');
 
-// MrData configuration
+// SaintFaber configuration
 const config = require('../../config.json');
 
 // Module constants

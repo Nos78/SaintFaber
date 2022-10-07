@@ -158,7 +158,7 @@ module.exports = {
     },
 
     /**
-     * Gets the current command prefix for MrData from the guild settings - this always
+     * Gets the current command prefix for SaintFaber from the guild settings - this always
      * returns a value, defaulting to the value in config.prefix
      * @param {string} guildId 
      * @param {*} client 
