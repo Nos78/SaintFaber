@@ -1,9 +1,9 @@
 {
-  "name": "mrdata",
-  "version": "2.2.4",
-  "description": "An ST:FC Bot to allow your alliance to input their Power Destroyed and Resources Raided scores, and compete against one another for the kudos!",
+  "name": "saintfaber",
+  "version": "0.0.1",
+  "description": "An Albion Online Discord Assistant Bot",
   "main": "bot.js",
-  "author": "BanderDragon#5699",
+  "author": "MightyClam#5699",
   "dependencies": {
     "bluebird": "^3.7.2",
     "body-parser": "^1.19.0",
@@ -39,10 +39,10 @@
   "license": "GPL-3.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Nos78/MrData.git"
+    "url": "git+https://github.com/Nos78/SaintFaber.git"
   },
   "bugs": {
-    "url": "https://github.com/Nos78/MrData/issues"
+    "url": "https://github.com/Nos78/SaintFaber/issues"
   },
-  "homepage": "https://github.com/Nos78/MrData#readme"
+  "homepage": "https://github.com/Nos78/SaintFaber#readme"
 }
