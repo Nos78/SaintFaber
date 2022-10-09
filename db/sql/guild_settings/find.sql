@@ -1,9 +1,10 @@
 /*
- * @Author: BanderDragon 
- * @Date: 2020-08-31 22:15:28 
- * @Last Modified by: BanderDragon
- * @Last Modified time: 2020-08-31 22:38:24
+ * @Author: Noscere 
+ * @Date: 2022-10-09 18:40:42 
+ * @Last Modified by:   Noscere 
+ * @Last Modified time: 2022-10-09 18:40:42 
  */
+
 SELECT
     gs.settings
 FROM

@@ -1,7 +1,7 @@
 /*
-  see if the score table exist.
+  see if the guilds table exist.
 */
 SELECT EXISTS (
   SELECT table_name FROM information_schema.tables
-  WHERE table_name = 'scores'
+  WHERE table_name = 'ao_guilds'
 );

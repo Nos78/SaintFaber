@@ -1,11 +1,8 @@
-/**
- * @Author: BanderDragon
- * @Date:   2019-05-06T08:09:56+01:00
- * @Email:  noscere1978@gmail.com
- * @Project: SaintFaber
- * @Filename: create.sql
- * @Last modified by:   BanderDragon
- * @Last modified time: 2019-05-06T20:52:57+01:00
+/*
+ * @Author: Noscere 
+ * @Date: 2022-10-09 18:44:03 
+ * @Last Modified by: Noscere
+ * @Last Modified time: 2022-10-09 18:54:29
  *
  * Creates table Guilds.
  * NOTE: We only add schema here to demonstrate the ability of class QueryFile

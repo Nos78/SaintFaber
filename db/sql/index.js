@@ -1,8 +1,8 @@
 /*
- * @Author: BanderDragon 
+ * @Author: Noscere 
  * @Date: 2019-03-10
- * @Last Modified by: BanderDragon
- * @Last Modified time: 2020-09-01 01:49:33
+ * @Last Modified by: Noscere
+ * @Last Modified time: 2022-10-09 19:03:17
  */
 
 'use strict';
@@ -26,6 +26,7 @@ const path = require('path');
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 module.exports = {
+    // Discord tables
     users: {
       create: sql('users/create.sql'),
       empty: sql('users/empty.sql'),
@@ -42,18 +43,29 @@ module.exports = {
       exists: sql('guilds/exists.sql')
     },
 
-    scores: {
-        create: sql('scores/create.sql'),
-        empty: sql('scores/empty.sql'),
-        drop: sql('scores/drop.sql'),
-        upsert: sql('scores/upsert.sql'),
-        exists: sql('scores/exists.sql'),
-        deleteByGuild: sql('scores/deleteByGuild.sql'),
-        deleteByUser: sql('scores/deleteByUser.sql'),
-        deleteByUserAndGuild: sql('scores/deleteByUserAndGuild.sql'),
-        findByUser: sql('scores/findByUser.sql'),
-        findByGuild: sql('scores/findByGuild.sql'),
-        findByUserAndGuild: sql('scores/findByUserAndGuild.sql')
+    // AO tables
+    ao_guilds: {
+        add: sql('ao_guilds/add.sql'),
+        create: sql('ao_guilds/create.sql'),
+        drop: sql('ao_guilds/drop.sql'),
+        empty: sql('ao_guilds/empty.sql'),
+        exists: sql('ao_guilds/exists.sql')
+    },
+
+    ao_players: {
+        add: sql('ao_players/add.sql'),
+        create: sql('ao_players/create.sql'),
+        deleteByGuild: sql('ao_players/deleteByGuild.sql'),
+        deleteByUser: sql('ao_players/deleteByUser.sql'),
+        deleteByUserAndGuild: sql('ao_players/deleteByUserAndGuild.sql'),
+        drop: sql('ao_players/drop.sql'),
+        empty: sql('ao_players/empty.sql'),
+        exists: sql('ao_players/exists.sql'),
+        findByAOGuild: sql('ao_players/findByAOGuild.sql'),
+        findByGuild: sql('ao_players/findByGuild.sql'),
+        findByUser: sql('ao_players/findByUser.sql'),
+        findByUserAndGuild: sql('ao_players/findByUserAndGuild.sql'), 
+        upsert: sql('ao_players/upsert.sql')
     },
 
     guild_settings: {

@@ -1,8 +1,8 @@
 /*
- * @Author: BanderDragon 
- * @Date: 2020-08-31 18:15:51 
- * @Last Modified by: BanderDragon
- * @Last Modified time: 2020-09-01 21:33:22
+ * @Author: Noscere 
+ * @Date: 2022-10-09 18:41:50 
+ * @Last Modified by:   Noscere 
+ * @Last Modified time: 2022-10-09 18:41:50 
  */
 
 CREATE TABLE ${schema~}.user_global_settings

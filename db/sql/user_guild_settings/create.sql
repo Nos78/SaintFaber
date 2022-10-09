@@ -1,8 +1,8 @@
 /*
- * @Author: BanderDragon 
- * @Date: 2020-08-31 20:44:19 
- * @Last Modified by: BanderDragon
- * @Last Modified time: 2020-08-31 20:51:55
+ * @Author: Noscere 
+ * @Date: 2022-10-09 18:32:09 
+ * @Last Modified by:   Noscere 
+ * @Last Modified time: 2022-10-09 18:32:09 
  */
 
 CREATE TABLE ${schema~}.user_guild_settings

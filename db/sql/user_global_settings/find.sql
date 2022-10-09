@@ -1,9 +1,10 @@
 /*
- * @Author: BanderDragon 
- * @Date: 2020-08-31 22:15:28 
- * @Last Modified by: BanderDragon
- * @Last Modified time: 2020-08-31 22:47:48
+ * @Author: Noscere 
+ * @Date: 2022-10-09 18:42:00 
+ * @Last Modified by:   Noscere 
+ * @Last Modified time: 2022-10-09 18:42:00 
  */
+
 SELECT
     ugs.settings
 FROM

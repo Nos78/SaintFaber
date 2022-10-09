@@ -1,3 +1,9 @@
+/*
+ * @Author: Noscere 
+ * @Date: 2022-10-09 19:05:44 
+ * @Last Modified by:   Noscere 
+ * @Last Modified time: 2022-10-09 19:05:44 
+ */
 'use strict';
 
 // Bluebird is the best promise library available today,
@@ -24,9 +30,10 @@ const initOptions = {
 
         // Do not use 'require()' here, because this event occurs for every task
         // and transaction being executed, which should be as fast as possible.
-        obj.scores = new repos.Scores(obj, pgp);
         obj.users = new repos.Users(obj, pgp);
         obj.guilds = new repos.Guilds(obj, pgp);
+        obj.aoguilds = new repos.AOGuilds(obj, pgp);
+        obj.aoplayers = new repos.AOPlayers(obj, pgp);
         obj.userGuildSettings = new repos.UserGuildSettings(obj, pgp);
         obj.userGlobalSettings = new repos.UserGlobalSettings(obj, pgp);
         obj.guildSettings = new repos.GuildSettings(obj, pgp);

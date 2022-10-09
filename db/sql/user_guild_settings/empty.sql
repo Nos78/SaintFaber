@@ -1,11 +1,9 @@
 /*
- * @Author: BanderDragon 
- * @Date: 2020-09-01 00:41:25 
- * @Last Modified by: BanderDragon
- * @Last Modified time: 2020-09-01 00:41:58
+ * @Author: Noscere 
+ * @Date: 2022-10-09 18:33:07 
+ * @Last Modified by:   Noscere 
+ * @Last Modified time: 2022-10-09 18:33:07 
+ *
+ * Quickly deletes all records from table user_guild_settings
  */
-
-/*
-    Quickly deletes all records from table user_guild_settings
-*/
 TRUNCATE TABLE ${schema~}.user_guild_settings CASCADE

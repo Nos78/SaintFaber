@@ -1,8 +1,8 @@
 /*
- * @Author: BanderDragon 
- * @Date: 2020-09-01 00:36:10 
- * @Last Modified by: BanderDragon
- * @Last Modified time: 2020-09-04 01:11:15
+ * @Author: Noscere 
+ * @Date: 2022-10-09 18:40:56 
+ * @Last Modified by:   Noscere 
+ * @Last Modified time: 2022-10-09 18:40:56 
  */
 
 WITH selectGuildId AS (

@@ -1,7 +1,6 @@
 /*
-    Quickly deletes all records from table Users
-    and all dependent records from table Products.
+    Drops the entire table Guilds.
     NOTE: We only add schema here to demonstrate the ability of class QueryFile
     to pre-format SQL with static formatting parameters when needs to be.
 */
-TRUNCATE TABLE ${schema~}.scores CASCADE
+DROP TABLE ${schema~}.ao_guilds
