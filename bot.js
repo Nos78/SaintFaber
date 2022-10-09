@@ -2,7 +2,7 @@
  * @Author: BanderDragon
  * @Date: 2019-03-10 02:54:40 
  * @Last Modified by: Noscere
- * @Last Modified time: 2022-10-07 22:13:44
+ * @Last Modified time: 2022-10-09 18:34:50
  */
 
 // Configure the Discord bot client
@@ -213,7 +213,7 @@ client.on("guildCreate", guild => {
     logger.info(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
 
     // Update the bot activity text to reflect the new stat
-    client.user.setActivity(`${client.guilds.cache.size} guilds | ${config.prefix}datahelp`, { type: 'WATCHING' });
+    client.user.setActivity(`${client.guilds.cache.size} guilds | ${config.prefix}${config.helpcommand}`, { type: 'WATCHING' });
     db.guilds.add(guild.id)
         .then(guild_record => {
             if(guild_record) {

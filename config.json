@@ -1,5 +1,6 @@
 {
   "prefix": "!",
+  "helpcommand": "help"
   "commandsModule": "./commands",
   "powerColor": 16776960,
   "powerDestroyedColor": 44678,

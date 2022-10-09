@@ -1,8 +1,8 @@
 /*
  * @Author: BanderDragon 
  * @Date: 2020-04-14
- * @Last Modified by: BanderDragon
- * @Last Modified time: 2020-10-09 04:35:20
+ * @Last Modified by: Noscere
+ * @Last Modified time: 2022-10-09 16:28:28
  */
 
 const logger = require('winston');
@@ -11,9 +11,9 @@ const config = require('../config.json');
 const library = require('../library');
 
 module.exports = {
-    name: 'datahelp',
+    name: `${config.helpcommand}`,
     description: 'List all of my commands, or get info about a specific command.',
-    aliases: ['commands', 'helpdata'],
+    aliases: ['commands', 'helpfaber', 'faberhelp'],
     usage: '[command name]',
     category: 'help',
     version: '2.2.1',
