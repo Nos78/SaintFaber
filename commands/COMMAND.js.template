@@ -1,0 +1,51 @@
+/*
+ * @Author: Noscere 
+ * @Date: 2022-10-11 00:54:54 
+ * @Last Modified by: Noscere
+ * @Last Modified time: 2022-10-11 00:56:37
+ * 
+ * Template for creating new commands, with comments
+ * describing the parameters of the main entry function
+ * execute(message, args)
+ * 
+ * Includes commonly used requires, delete ones that are
+ * unneeded.
+ */
+
+const Discord = require('discord.js');
+const db = require('../db');
+const config = require('../config.json');
+const library = require('../library');
+
+// Set up the logger for debug/info
+const logger = require('winston');
+
+module.exports = {
+    name: 'COMMAND NAME',
+    description: 'DESCRIPTION',
+    aliases: ['COMMAND NAME ALIASES'],
+    args: false,
+    usage: '<PARAMETERS HERE>',
+    cooldown: 3,
+    category: 'CATEGORY NAME',
+    version: 'X.Y.Z',
+    guildOnly: true,
+    execute(message, args) {
+        /* execute is the entry point for all commands,
+         * and is called by bot.js to process the command.
+         *
+         * 'message' string
+         * 'args' array
+         * 
+         * + 'message' is the complete message as received by Discord client on
+         * receipt of a message event.
+         * + 'args' is the message split into individual words (split on space).
+         * 
+         * The first word of the message is usually the command name, args[0].
+         * The received message is split into individual words and passed as
+         * 'args' array.
+         * 
+        // COMMAND CODE LOGIC HERE
+
+    } // execute
+} // module.exports
