@@ -2,7 +2,7 @@
  * @Author: Noscere 
  * @Date: 2022-10-09 18:38:39 
  * @Last Modified by: Noscere
- * @Last Modified time: 2022-10-09 18:39:07
+ * @Last Modified time: 2022-10-10 15:51:16
  */
 
 'use strict';
@@ -95,14 +95,10 @@ function createColumnsets(pgp) {
 
         cs.insert = new pgp.helpers.ColumnSet(['guild_id'], {table});
         cs.update = cs.insert.extend(['?id']);
-        cs.update = cs.insert.({ name: 'name', mod:'varchar', def:null});
-        cs.update = cs.insert.({ name: 'discord_guild_id', mod:'int', def:null});
-        cs.update = cs.insert.({ name: 'alliance_id', mod:'int', def:null});
-        /*id serial PRIMARY KEY,
-        guild_id varchar UNIQUE,
-        name varchar,
-        discord_guild_id integer references guilds(id) ON DELETE SET NULL,
-        alliance_id integer references ao_alliances(id) ON DELETE SET NULL,*/
+        cs.update = cs.insert.extend({ name: 'name', mod:'varchar', def:null});
+        cs.update = cs.insert.extend({ name: 'discord_guild_id', mod:'int', def:null});
+        cs.update = cs.insert.extend({ name: 'alliance_id', mod:'int', def:null});
+
     }
     return cs;
 }

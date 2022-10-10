@@ -2,7 +2,7 @@
  * @Author: Noscere 
  * @Date: 2022-10-09 18:45:34 
  * @Last Modified by: Noscere
- * @Last Modified time: 2022-10-09 18:46:23
+ * @Last Modified time: 2022-10-10 15:49:53
  */
 
 'use strict';
@@ -15,8 +15,8 @@ module.exports = {
     Guilds: require('./guilds'),
 
     // Albion Online (AO) tables
-    AOGuilds: require('./ao_guilds')
-    AOPlayers: require('./ao_players')
+    AOGuilds: require('./ao_guilds'),
+    AOPlayers: require('./ao_players'),
 
     // Configuration settings table (guild is discord guild, not game specific, eg not AO_guild)
     UserGlobalSettings: require('./user_global_settings'),

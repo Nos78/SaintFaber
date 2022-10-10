@@ -2,7 +2,7 @@
  * @Author: Noscere 
  * @Date: 2022-10-09 18:28:45 
  * @Last Modified by: Noscere
- * @Last Modified time: 2022-10-09 18:39:02
+ * @Last Modified time: 2022-10-10 15:51:35
  */
 
 'use strict';
@@ -151,10 +151,9 @@ function createColumnsets(pgp) {
 
         cs.insert = new pgp.helpers.ColumnSet(['player_id'], {table});
         cs.update = cs.insert.extend(['?id']);
-
-        cs.update = cs.insert.({ name: 'name', mod:'varchar', def:null});
-        cs.update = cs.insert.({ name: 'discord_guild_id', mod:'int', def:null});
-        cs.update = cs.insert.({ name: 'alliance_id', mod:'int', def:null});
+        cs.update = cs.insert.extend({ name: 'name', mod:'varchar', def:null});
+        cs.update = cs.insert.extend({ name: 'discord_guild_id', mod:'int', def:null});
+        cs.update = cs.insert.extend({ name: 'alliance_id', mod:'int', def:null});
     }
     return cs;
 }
