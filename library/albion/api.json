@@ -1,0 +1,80 @@
+{
+    "rootURL": "https://gameinfo.albiononline.com/api/gameinfo/",
+    "endpoint": {
+        "parameters": {
+        "range": {
+            "day": "range=day",
+            "week": "range=week",
+            "month": "range=month"
+        },
+        "limit": "limit=INT",
+        "offset": "offset=INT",
+        "type": {
+            "pve": "type=PvE",
+            "gathering": "type=Gathering"
+        },
+        "subtype": {
+            "all": "subtype=All",
+            "fiber": "subtype=Fiber",
+            "hide": "subtype=hide",
+            "ore": "subtype=Ore",
+            "rock": "subtype=Rock",
+            "wood": "subtype=Wood"
+        },
+        "region": {
+            "total": "region=Total",
+            "royal": "region=Royal",
+            "outlands": "region=Outlands",
+            "hellgate": "region=Hellgate"
+        },
+        "guildId": "guildId=ID",
+        "allianceId": "allianceId=ID",
+        "sort": {
+            "totalFame": "sort=totalFame",
+            "totalKills": "sort=totalKills",
+            "recent": "sort=recent"
+        }
+        },
+        "search": "search?q=",
+        "player": "players/ID",
+        "players": {
+        "deaths": "players/ID/deaths",
+        "kills": "players/ID/kills",
+        "stats": "players/statistics?",
+        },
+        "guild": "guilds/ID",
+        "guilds": {
+        "members": "guilds/ID/members",
+        "data": "guilds/ID/data",
+        "top": "guilds/ID/top?",
+        "topGuildsByAttacks": "guilds/topguildsbyattacks?",
+        "topGuildsByDefenses": "guilds/topguildsbydefenses"
+        },
+        "alliance": "alliances/ID",
+        "battle": "battle/ID?",
+        "battles": "battles/ID",
+        "battlesStats": "battles?",
+        "item": "items/ID",
+        "items": {
+        "data": "items/ID/data",
+        "tree": "items/ID/_itemCategoryTree",
+        "weaponCategories": "items/_weaponCategories"
+        },
+        "matches": "matches/crystal?",
+        "match": "matches/crystal/ID",
+        "guildMatches": {
+        "top": "guildmatches/top",
+        "next": "guildmatches/next?",
+        "past": "guildmatches/past?"
+        },
+        "guildMatch": "guildmatches/ID",
+        "event": "events/ID",
+        "events": {
+        "playerFame": "events/playerfame?",
+        "guildFame": "events/guildfame?",
+        "playerWeaponFame": "events/playerweaponfame?",
+        "killFame": "events/killfame?",
+        "stats": "events?"
+        }
+    }
+}
