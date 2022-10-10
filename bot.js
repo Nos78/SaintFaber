@@ -2,7 +2,7 @@
  * @Author: BanderDragon
  * @Date: 2019-03-10 02:54:40 
  * @Last Modified by: Noscere
- * @Last Modified time: 2022-10-09 18:34:50
+ * @Last Modified time: 2022-10-10 16:04:32
  */
 
 // Configure the Discord bot client
@@ -111,8 +111,14 @@ client.on("ready", () => {
      * and configure it if they don't exist...
      *
      * Create the users and guilds tables first, then the dependant tables...
+     * 
+     * Users, Guilds -> Discord tables
+     * *_settings -> Discord settings for users, guilds, and globally
+     * 
+     * AO_* -> Albion Online tables
      */
 
+    // Create Discord User table
     db.users.exists()
         .then(data => {
             if (data.rows[0].exists == false) {
@@ -123,6 +129,7 @@ client.on("ready", () => {
             }
         });
 
+    // Create Discord guild (server) table
     db.guilds.exists()
         .then(data => {
             if (data.rows[0].exists == false) {
@@ -133,13 +140,23 @@ client.on("ready", () => {
             }
         });
 
-    db.scores.exists()
+    // Configure Albion Online tables
+
+    db.aoguilds.exists()
+        .then(data => {
+            if (data.rows[0].exists == false) {
+                logger.debug(`No database ao_guilds table found!  Creating...`);
+                db.aoguilds.create();
+                logger.debug(`ao_guilds configured.`);
+            }
+        });
+    db.aoplayers.exists()
         .then(data => {
             if (data.rows[0].exists == false) {
                 // Database does not exist, lets create it...
-                logger.debug(`No database score table found!  Creating...`);
-                db.scores.create();
-                logger.debug(`Scores configured.`)
+                logger.debug(`No database ao_players table found!  Creating...`);
+                db.aoplayers.create();
+                logger.debug(`ao_players configured.`)
             }
         });
 
