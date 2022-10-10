@@ -2,7 +2,7 @@
  * @Author: BanderDragon
  * @Date: 2019-03-10 02:54:40 
  * @Last Modified by: Noscere
- * @Last Modified time: 2022-10-10 16:04:32
+ * @Last Modified time: 2022-10-10 16:41:18
  */
 
 // Configure the Discord bot client
@@ -150,13 +150,14 @@ client.on("ready", () => {
                 logger.debug(`ao_guilds configured.`);
             }
         });
+
     db.aoplayers.exists()
         .then(data => {
             if (data.rows[0].exists == false) {
                 // Database does not exist, lets create it...
                 logger.debug(`No database ao_players table found!  Creating...`);
                 db.aoplayers.create();
-                logger.debug(`ao_players configured.`)
+                logger.debug(`ao_players configured.`);
             }
         });
 
@@ -166,7 +167,7 @@ client.on("ready", () => {
                 // Table does not exists, lets create it...
                 logger.debug(`No userGlobalSettings table found!  Creating...`);
                 db.userGlobalSettings.create();
-                logger.debug(`userGlobalSettings configured.`)
+                logger.debug(`userGlobalSettings configured.`);
             }
         });
 
@@ -176,7 +177,7 @@ client.on("ready", () => {
                 // Table does not exists, lets create it...
                 logger.debug(`No userGuildSettings table found!  Creating...`);
                 db.userGuildSettings.create();
-                logger.debug(`userGuildSettings configured.`)
+                logger.debug(`userGuildSettings configured.`);
             }
         });
 
@@ -186,7 +187,7 @@ client.on("ready", () => {
                 // Table does not exists, lets create it...
                 logger.debug(`No guildSettings table found!  Creating...`);
                 db.guildSettings.create();
-                logger.debug(`guildSettings configured.`)
+                logger.debug(`guildSettings configured.`);
             }
         });
     /* Populate the database with the guilds we are online in. */
