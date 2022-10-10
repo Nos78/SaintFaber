@@ -48,6 +48,8 @@ CREATE TABLE ${schema~}.ao_guilds
     id serial PRIMARY KEY,
     guild_id varchar UNIQUE,
     name varchar,
-    discord_guild_id integer references guilds(id) ON DELETE SET NULL,
-    alliance_id integer references ao_alliances(id) ON DELETE SET NULL,
+    discord_guild_id integer references guilds(id) ON DELETE SET NULL
 );
+/*    alliance_id integer references ao_alliances(id) ON DELETE SET NULL,
+ * TODO - When this table is added, put this back!
+);*/
