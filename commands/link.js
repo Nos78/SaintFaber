@@ -7,7 +7,7 @@
  * 
  */
 
-const configSecret = require('./config-secret.json');
+const configSecret = require('../config-secret.json');
 const library = require('../library');
 module.exports = {
     name: 'link',
