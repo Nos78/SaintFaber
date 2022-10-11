@@ -48,7 +48,7 @@
         "data": "guilds/ID/data",
         "top": "guilds/ID/top?",
         "topGuildsByAttacks": "guilds/topguildsbyattacks?",
-        "topGuildsByDefenses": "guilds/topguildsbydefenses"
+        "topGuildsByDefenses": "guilds/topguildsbydefenses?"
         },
         "alliance": "alliances/ID",
         "battle": "battle/ID?",
