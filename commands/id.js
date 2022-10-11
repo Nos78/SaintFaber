@@ -1,8 +1,11 @@
 /*
  * @Author: BanderDragon
  * @Date: 2020-08-25 02:54:25 
- * @Last Modified by: BanderDragon
- * @Last Modified time: 2020-09-29 03:25:01
+ * @Last Modified by: Noscere
+ * @Last Modified time: 2022-10-11 02:47:07
+ * 
+ * Returns the discord Id of a given discord user.
+ * Without any parameter, it will return the Id of the command issuer.
  */
 
 const config = require('../config.json');
@@ -14,7 +17,7 @@ module.exports = {
   description: 'Returns the discord Id of the specified user.  If no parameter is specified, it returns the message sender\'s Id',
   cooldown: 60,
   args: false,
-  version: '1.0.2',
+  version: '1.0.3',
   category: 'utility',
   usage: '<@memberName>',
   async execute(message, args) {

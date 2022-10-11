@@ -1,19 +1,25 @@
 /*
  * @Author: BanderDragon 
  * @Date: 2019-05-11 00:51:12
- * @Last Modified by: BanderDragon
- * @Last Modified time: 2020-09-28 22:57:11
+ * @Last Modified by: Noscere
+ * @Last Modified time: 2022-10-11 02:26:29
+ * 
+ * Command to change the nickname of a discord user
+ * on the current discord server.
+ * 
+ * Users can change their own nickname, whilst server
+ * admins can change other user's nicknames as well.
  */
 
 const library = require('../library');
 
 module.exports = {
     name: 'changenickname',
-    description: `Use this command to change your nickname. Privileged users can change other user's nicknames, but this will fail if that user has higher discord privileges than me.`,
+    description: `Use this command to change your nickname. Privileged users can change other user's nicknames, but this will fail if that user has higher discord privileges than @BOTNAME.`,
     aliases: ['nick', 'changenick'],
     usage: '`!changenickname <newnickname>`\nAdmin only: `!changenickname <@user> <newnickname>`',
     args: true,
-    version: '1.1.0',
+    version: '1.1.1',
     guildOnly: true,
     category: 'admin',
     execute(message, args) {

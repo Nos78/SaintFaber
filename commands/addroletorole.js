@@ -1,8 +1,10 @@
 /*
  * @Author: BanderDragon 
  * @Date: 2019-05-10 19:54:25 
- * @Last Modified by: BanderDragon
- * @Last Modified time: 2020-09-28 22:47:23
+ * @Last Modified by: Noscere
+ * @Last Modified time: 2022-10-11 02:29:00
+ * 
+ * Command to block add members of discord role A to role B
  */
 
 const library = require('../library');
@@ -13,7 +15,7 @@ module.exports = {
     aliases: ['artr'],
     usage: '<role A> <role B>',
     category: 'admin',
-    version: '2.0.3',
+    version: '2.0.4',
     guildOnly: true,
     execute(message, args) {
         let msg = library.Helper.sendStandardWaitMessage(message.channel);

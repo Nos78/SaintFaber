@@ -1,34 +1,35 @@
 /*
  * @Author: BanderDragon 
  * @Date: 2019-05-06 08:09:56
- * @Last Modified by: BanderDragon
- * @Last Modified time: 2020-09-30 17:51:39
+ * @Last Modified by: Noscere
+ * @Last Modified time: 2022-10-11 02:34:07
+ * 
+ * Command to export all the discord guilds that the
+ * bot is currently connected to. This is returned
+ * as a text file and DM'ed to the message sender.
  */
 
-const Discord = require('discord.js');
-const db = require('../db');
-const config = require('../config.json');
 const library = require('../library');
 const moment = require('moment');
 
 // Set up the logger for debug/info
 const logger = require('winston');
 
-const fs = require("fs");
-
 module.exports = {
     name: 'exportguilds',
-    description: 'Export the guilds @BOTNAME is connected to a text file.',
+    description: 'Export all the discord guilds that @BOTNAME is connected to into a text file.',
     args: false,
     usage: 'export',
     cooldown: 3,
     version: '0.0.1',
     category: 'owner',    
     guildOnly: true,
+
+    /*eslint no-unused-vars: ["error", { "args": "none" }]*/
     execute(message, args) {
-        msg = library.Helper.sendStandardWaitMessage(message.channel);
+        var msg = library.Helper.sendStandardWaitMessage(message.channel);
         if (!library.Admin.isBotOwner(message.author.id)) {
-            return library.Helper.editWaitErrorMessage(msg, `Sorry, ${message.author}, only my owner can use this command.`);
+            return library.Helper.editWaitErrorMessage(msg, `Sorry ${message.author}, this is a privileged command. Only my owner can use this command.`);
         }
         const client = message.client;
         var data = [];
@@ -43,15 +44,11 @@ module.exports = {
         message.author.send(data, { split: true })
             .then(() => {
                 if (message.channel.type === 'dm') return;
-                library.Helper.editWaitSuccessMessage(msg, `${message.author}, I've sent you a DM with all the guilds I am connected to.`);
+                library.Helper.editWaitSuccessMessage(msg, `${message.author}, I've sent you a DM where you will find a text file that contains all the discord guilds that I am connected to.`);
             })
             .catch(error => {
-                logger.error(`Could not send help DM to ${message.author.tag}.\n`, error);
+                logger.error(`Could not send DM to ${message.author.tag}.\n`, error);
                 message.reply('it seems like I can\'t DM you! Do you have DMs disabled?');
         });
-
-        //var msg2 = library.Helper.sendStandardWaitMessage(message.channel);
-
-        //library.Helper.editWaitSuccessMessage(msg, `${message.author}, I have sent you a private message with the list of guilds I am connected to.`);
     } // execute
 } // module.exports

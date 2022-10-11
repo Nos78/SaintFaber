@@ -1,8 +1,14 @@
 /*
  * @Author: BanderDragon 
  * @Date: 2020-09-10 16:10:02 
- * @Last Modified by: BanderDragon
- * @Last Modified time: 2020-09-29 03:40:59
+ * @Last Modified by: Noscere
+ * @Last Modified time: 2022-10-11 03:14:06
+ * 
+ * Deletes a given command from the cache. It does not
+ * remove the actual js script from from the disk.
+ * 
+ * IE, it only removes the command from memory. The command
+ * will be available when the bot next restarts.
  */
 
 const library = require('../library');

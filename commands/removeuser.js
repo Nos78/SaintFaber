@@ -1,8 +1,12 @@
 /*
  * @Author: BanderDragon 
  * @Date: 2020-08-25 02:55:21 
- * @Last Modified by: BanderDragon
- * @Last Modified time: 2020-09-29 03:41:43
+ * @Last Modified by: Noscere
+ * @Last Modified time: 2022-10-11 03:15:35
+ * 
+ * Removes a user from the database. This will only be allowed
+ * if the user is no longer a member of the server from which
+ * the command was issued.
  */
 
 const db = require('../db');
@@ -11,13 +15,13 @@ const library = require('../library');
 
 module.exports = {
     name: 'removeuser',
-    description: 'Removes a user from your guild database.  You can only remove a user when they are no longer a member of your server.  Unfortunately, that means that their name or nickname is no longer accessible.  The only way to delete this user from your data is to use their discord user ID number.  Fortunately, this is easily accessible, and you can copy the number from any of the statistics leaderboards - Example: User 1234567890 has left the building.\n\nWARNING: Make sure the ID number is entered correctly, else you may end up removing someone that you did not intend!',
+    description: 'Removes a user from your guild database using their ID.  You can only remove a user when they are no longer a member of your server.  Unfortunately, that means that their name or nickname is no longer accessible.  The only way to delete this user from your data is to use their discord user ID number.  Fortunately, this is easily accessible, and you can copy the number from any of the statistics leaderboards - Example: User 1234567890 has left the building.\n\nWARNING: Make sure the ID number is entered correctly, else you may end up removing someone that you did not intend!',
     aliases: ['deleteuser'],
     args: false,
     usage: 'removeuser <user ID> - where <user ID> is the discord user ID of the user you want to delete; this is a long number and can be found on the leaderboard(s).',
     cooldown: 3,
     category: 'scoring',
-    version: '0.1.1',
+    version: '0.1.2',
     guildOnly: true,
     execute(message, args) {
 

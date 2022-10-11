@@ -2,7 +2,14 @@
  * @Author: BanderDragon 
  * @Date: 2020-04-14
  * @Last Modified by: Noscere
- * @Last Modified time: 2022-10-09 16:28:28
+ * @Last Modified time: 2022-10-11 02:46:15
+ * 
+ * Displays help text on how to use the bot. The help
+ * message is nicely formatted as an embed message and
+ * output to the channel in which the command was issued.
+ * 
+ * The commands and related usage text all come from the
+ * definitions in each command .js file.
  */
 
 const logger = require('winston');
@@ -16,7 +23,7 @@ module.exports = {
     aliases: ['commands', 'helpfaber', 'faberhelp'],
     usage: '[command name]',
     category: 'help',
-    version: '2.2.1',
+    version: '2.2.3',
     cooldown: 5,
     async execute(message, args) {
 		//msg = library.Helper.sendStandardWaitMessage(message.channel);

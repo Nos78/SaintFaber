@@ -1,13 +1,15 @@
 /*
  * @Author: BanderDragon 
  * @Date: 2020-09-10 15:33:21 
- * @Last Modified by: BanderDragon
- * @Last Modified time: 2020-09-29 03:23:47
+ * @Last Modified by: Noscere
+ * @Last Modified time: 2022-10-11 02:44:26
+ * 
+ * Dumps the settings for the guild/server from which the
+ * command was issued. Displays a JSON object.
  */
 
 const library = require('../library');
 const config = require('../config.json');
-const db = require('../db');
 
 const markdown = library.Discord.markdown;
 
@@ -52,7 +54,7 @@ module.exports = {
                 library.Helper.editWaitSuccessMessage(msg, `${message.author}, the settings for ${searchGuild.name} are \n\n${markdown.codeBlock.multi}json\n${JSON.stringify(settings, null, 2)}${markdown.codeBlock.multi}`);
             })
             .catch(error => {
-                library.Helper.editWaitErrorMessage(msg, `${message.author}, I was unable to retrieve the settings for ${searchGuild.name}. An error occured:\n\n${markdown.codeBlock.multi}${JSON.stringify(error, null, 2)}${markdown.codeBlock.multi}`);
+                library.Helper.editWaitErrorMessage(msg, `${message.author}, I was unable to retrieve the settings for ${searchGuild.name}. An error occurred:\n\n${markdown.codeBlock.multi}${JSON.stringify(error, null, 2)}${markdown.codeBlock.multi}`);
             });
     }
 }

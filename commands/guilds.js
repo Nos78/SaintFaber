@@ -1,22 +1,27 @@
 /*
  * @Author: BanderDragon 
  * @Date: 2020-08-29 02:51:12 
- * @Last Modified by: BanderDragon
- * @Last Modified time: 2020-09-27 01:48:16
+ * @Last Modified by: Noscere
+ * @Last Modified time: 2022-10-11 02:42:03
+ * 
+ * Command returns information on the discord guilds that
+ * the bot is connected to.
+ * 
  */
 
 const library = require('../library');
 const config = require('../config.json');
-const { initialiseCommands } = require('../library/discord/discord');
 
 module.exports = {
     name: 'guilds',
-    description: `This command returns information on a discord guild (a server).  @BOTNAME must be a member of the guild to provide information. The default command returns information on your server.`,
+    description: `This command returns information the discord guilds (servers) that @BOTNAME is connected to.`,
     usage: `<guild name>`,
     args: false,
     guildOnly: false,
     category: 'utility',
-    version: '0.0.1',
+    version: '0.0.2',
+
+    /*eslint no-unused-vars: ["error", { "args": "none" }]*/
     async execute(message, args) {
         const msg = library.Helper.sendStandardWaitMessage(message.channel)
 
@@ -57,7 +62,6 @@ module.exports = {
                         fields.push({"name": `Invite link`, "value": `https://discord.gg/${vanityCode}`});
                         fields.push({"name": `Invite links`, "value": `${JSON.stringify(invites)}`});
                         library.Helper.sendFullRichMessage(`${id.value} - ${guild.name}`, `${guild.description}`, `${guild.owner.displayName} [${guild.owner.user.username}#${guild.owner.user.discriminator}]`, `${guild.iconURL()}`, fields, message.channel, message.client, config.messageSuccessColor);
-                        //fields.push({"name": `${guild.iconURL()} ${id.value} - ${guild.name}`, "value": `members: ${guild.members.size} https://discord.gg/${vanityCode} -  **Discord Guild Owner:** `});
                     } catch (e) {
                         console.error(e);
                     }

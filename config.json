@@ -30,6 +30,7 @@
   "rolesExtension": ".json",
   "deleteCallingCommand":  false,
   "botCreator": "515622530371944448",
+  "botOwner": "515622530371944448",
   "tempDir": "./tmp/",
   "userConfigurationPath": "./config/",
   "userConfigurationFilePrefix": "config.",

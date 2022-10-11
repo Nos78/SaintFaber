@@ -2,12 +2,18 @@
  * @Author: BanderDragon 
  * @Date: 2020-08-29 02:51:12 
  * @Last Modified by: Noscere
- * @Last Modified time: 2022-10-07 22:36:32
+ * @Last Modified time: 2022-10-11 02:37:56
+ *
+ * Command to return information on a given discord server/guild.
+ * The bot must be connected to the given guild in order to return
+ * information on it.
+ * 
+ * The default operation, where no name is given, is to return
+ * information on the guild where the command originated.
  */
 
 const library = require('../library');
 const config = require('../config.json');
-const { initialiseCommands } = require('../library/discord/discord');
 const moment = require('moment');
 
 module.exports = {
@@ -16,7 +22,7 @@ module.exports = {
     aliases: ['guild', 'guildinfo', 'serverinfo', 'allianceinfo'],
     usage: `<guild name>`,
     args: false,
-    version: '0.1.2',
+    version: '0.1.3',
     category: 'utility',    
     guildOnly: true,
     async execute(message, args) {

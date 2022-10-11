@@ -1,8 +1,10 @@
 /*
  * @Author: BanderDragon 
  * @Date: 2020-08-25 02:55:43 
- * @Last Modified by: BanderDragon
- * @Last Modified time: 2020-09-29 05:15:10
+ * @Last Modified by: Noscere
+ * @Last Modified time: 2022-10-11 03:11:37
+ * 
+ * Admin command to add a role to the guild's privileged roles list.
  */
 
 const library = require('../library');
@@ -12,11 +14,10 @@ module.exports = {
     description: `This command is used by Admins to add a role to the guild privileged roles list.`,
     aliases: ['priv'],
     args: true,
-    version: '0.1.1',
+    version: '0.1.2',
     category: 'admin',
     guildOnly: true,
     execute(message, args) {
-
         if (library.Admin.isAdmin(message.author.id, message.guild.id, message.client)) {
             if (args.length == 0) {
                 return message.channel.send("No role specified!  Please use `!priv <role>`");

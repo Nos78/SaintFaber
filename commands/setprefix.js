@@ -1,8 +1,10 @@
 /*
  * @Author: BanderDragon 
  * @Date: 2020-09-04 03:45:21 
- * @Last Modified by: BanderDragon
- * @Last Modified time: 2020-09-29 05:59:40
+ * @Last Modified by: Noscere
+ * @Last Modified time: 2022-10-11 03:18:24
+ *
+ * Command to set the prefix for the bot on the current server.
  */
 
 const library = require('../library');
@@ -14,7 +16,7 @@ module.exports = {
     aliases: ['sp', 'scp', 'setcommandprefix'],
     args: true,
     category: 'config',
-    version: '0.0.1',
+    version: '0.1.1',
     usage: '<new prefix>, where the new prefix can be a single character of your choice, from !"£*$%^&+?~:;',
     guildOnly: true,
     async execute(message, args) {

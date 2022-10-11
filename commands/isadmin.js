@@ -1,8 +1,11 @@
 /*
  * @Author: BanderDragon 
  * @Date: 2020-08-25 02:55:56 
- * @Last Modified by: BanderDragon
- * @Last Modified time: 2020-09-29 03:25:36
+ * @Last Modified by: Noscere
+ * @Last Modified time: 2022-10-11 02:48:16
+ * 
+ * Command to determine whether the command issuer is 
+ * known as an admin of the current server.
  */
 
  const library = require('../library');
@@ -13,8 +16,10 @@ module.exports = {
 	cooldown: 30,
 	args: false,
 	guildOnly: true,
-	version: '1.0.2',
+	version: '1.0.3',
 	category: 'utility',
+
+	/*eslint no-unused-vars: ["error", { "args": "none" }]*/
 	execute(message, args) {
     let admin = "is not";
     if(library.Admin.isAdmin(message.author.id, message.guild.id, message.client)) {

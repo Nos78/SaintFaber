@@ -1,8 +1,12 @@
 /*
  * @Author: BanderDragon 
  * @Date: 2020-09-09 03:26:15 
- * @Last Modified by: BanderDragon
- * @Last Modified time: 2020-09-29 03:41:01
+ * @Last Modified by: Noscere
+ * @Last Modified time: 2022-10-11 03:12:42
+ * 
+ * Bot owner command to reload a given command. Useful for
+ * testing commands to reload them without needing to restart
+ * the bot.
  */
 const library = require('../library');
 const config = require('../config.json');
@@ -14,7 +18,7 @@ module.exports = {
     aliases: ['reload'],
     usage: `<command name> - reloads the given command name, e.g. *${config.prefix}reload power* will invalidate the cache for the power script, and reload power.js from file storage.`,
     args: true,
-    version: '1.0.0',
+    version: '1.0.1',
     category: 'owner',
 	guildOnly: true,
 	execute(message, args) {

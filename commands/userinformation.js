@@ -1,8 +1,11 @@
 /*
  * @Author: BanderDragon 
  * @Date: 2020-08-29 02:51:12 
- * @Last Modified by: BanderDragon
- * @Last Modified time: 2021-06-03 03:59:15
+ * @Last Modified by: Noscere
+ * @Last Modified time: 2022-10-11 03:25:09
+ *
+ * Command to return information on a given discord user.
+ * the user queried must be a member of the server.
  */
 
 const library = require('../library');
@@ -15,7 +18,7 @@ module.exports = {
     usage: `<member name>`,
     args: true,
     guildOnly: true,
-    version: '0.0.2',
+    version: '0.0.3',
     category: 'utility',
     execute(message, args) {
         if(args.length == 0) {

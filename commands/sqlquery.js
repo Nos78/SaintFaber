@@ -1,21 +1,25 @@
 /*
  * @Author: BanderDragon 
  * @Date: 2020-09-10 15:33:21 
- * @Last Modified by: BanderDragon
- * @Last Modified time: 2020-09-29 03:46:39
+ * @Last Modified by: Noscere
+ * @Last Modified time: 2022-10-11 03:22:14
+ *
+ * Performs a direct SQL injection. Given the security risk
+ * that this obviously entails, the command can only be performed
+ * by the owner of the bot, who is usually the same as the host
+ * machine admin.
  */
 
 const library = require('../library');
-const config = require('../config.json');
 const db = require('../db');
 
 module.exports = {
     name: 'sqlquery',
-    description: `Perform a SQL query on @BOTNAME's database.  This command can be used by the bot own only.`,
+    description: `Perform an SQL query directly on @BOTNAME's database.  This command can be used by the bot owner only, for obvious reasons...`,
     aliases: ['sql', 'query'],
     args: true,
     category: 'owner',
-    version: '0.0.2',
+    version: '0.0.3',
     usage: '<query>, where query is a piece of sql code. No syntax checking is performed.',
     guildOnly: true,
     async execute(message, args) {

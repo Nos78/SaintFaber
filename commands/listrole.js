@@ -1,11 +1,11 @@
 /*
  * @Author: BanderDragon 
  * @Date: 2019-05-10 19:54:25
- * @Last Modified by: BanderDragon
- * @Last Modified time: 2020-09-29 03:33:51
+ * @Last Modified by: Noscere
+ * @Last Modified time: 2022-10-11 03:02:10
+ * 
+ * Command to list all users who are members of a given role
  */
-
- const library = require('../library');
 
 module.exports = {
     name: 'listrole',
@@ -14,7 +14,7 @@ module.exports = {
     usage: '<role>',
     guildOnly: true,
     category: 'utility',
-    version: '0.0.2',
+    version: '0.0.3',
 
     execute(message, args) {
         if (args.length < 1) {

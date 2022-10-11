@@ -1,8 +1,15 @@
 /*
  * @Author: BanderDragon 
  * @Date: 2019-07-01 23:25:57
- * @Last Modified by: BanderDragon
- * @Last Modified time: 2020-09-28 22:56:41
+ * @Last Modified by: Noscere
+ * @Last Modified time: 2022-10-11 02:24:35
+ * 
+ * Command to broadcast a message to every discord server
+ * that the bot is connected to.
+ * 
+ * This command attempts to find either the default (normally
+ * a 'welcome' channel, or the first available channel) and
+ * sends the given message to that channel.
  */
 
 const library = require('../library');
@@ -13,7 +20,7 @@ module.exports = {
     description: `Bot *creator only* command! Broadcasts to every connected guild, using the default (or first available) channel.`,
     args: true,
     category: 'owner',
-    version: '1.0.1',
+    version: '1.0.2',
     usage: '<message to send>',
     async execute(message, args) {
         // Only the bot creator can use the command 'broadcast'
@@ -21,7 +28,7 @@ module.exports = {
         if (library.Admin.isBotOwner(message.author.id)) {
             if (args.length == 0) {
                 // No args specified, reply and quit.
-                message.channel.send(`${message.author}, you have not specifed a message to send.`);
+                message.channel.send(`${message.author}, you have not specified a message to send.`);
                 return;
             }
 
