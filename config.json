@@ -2,17 +2,21 @@
   "prefix": "!",
   "helpcommand": "help",
   "commandsModule": "./commands",
-  "powerColor": 16776960,
-  "powerDestroyedColor": 44678,
-  "resourcesRaidedColor": 7798918,
+  "color": {
+    "yellow": 16776960,
+    "blue": 3447003,
+    "darkOrange": 15015197,
+    "aqua": 44678,
+    "violet": 7798918,
+    "cornflower": 2124492,
+    "blue2": 28415,
+    "orange": 15015197,
+    "orange2": 15993097,
+    "brightGreen": 969005,
+    "darkGreen": 1341220,
+    "brightRed": 16711680
+  },
   "standardMessageColor": 3447003,
-  "hostileshipsdestroyedColor": 2124492,
-  "hostilestotaldamageColor": 28415,
-  "kdratioColor": 15015197,
-  "pvpshipsdestroyedColor": 15993097,
-  "levelColor": 969005,
-  "resourcesminedColor": 1341220,
-  "pvptotaldamageColor": 16711680,
   "debugLevel": "none",
   "rolesPathAndFilename": "./roles/roles.",
   "rolesExtension": ".json",
@@ -33,13 +37,5 @@
   "helpTextParamsTemplate": {
     "name": "",
     "value": ""
-  },
-  "webPushPublic": {
-    "firebaseSenderId": 351645999964
-  },
-  "webPush": {
-    "clientAddr": "https://saintfaber.codin.gq",
-    "clientDisplayPort": 5001
-  },
-  "timeBetweenAdverts": 300
+  }
 }
