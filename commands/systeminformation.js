@@ -1,17 +1,18 @@
 /*
  * @Author: BanderDragon 
  * @Date: 2020-08-27 21:33:10 
- * @Last Modified by: BanderDragon
- * @Last Modified time: 2020-09-29 03:47:09
+ * @Last Modified by: Noscere
+ * @Last Modified time: 2022-10-11 03:24:24
+ * 
+ * Provides information on the systems of the bot, such as operating system,
+ * software version numbers, host, uptime, etc.
  */
 
-const { useCustomLoadavg } = require('loadavg-windows');
 const os = require('os');
 
 const pkg = require('../package.json');
 const library = require('../library');
 const moment = require('moment');
-const momentTz = require('moment-timezone');
 const process = require('process');
 
 module.exports = {
@@ -19,9 +20,11 @@ module.exports = {
     cooldown: 30,
     args: false,
     category: 'utility',
-    version: '0.0.3',
+    version: '0.0.4',
     aliases: ['sysinfo', 'si', 'uptime', 'up', 'version', 'about'],
     description: `Provides system information about @BOTNAME. Provides details of my critical systems, my software version and licensing.        Also lists the status of my hardware, the level of resources my systems consume, and provides an indication of how long I have been online since my last system update, in other words the total time elapsed since this bot was (re)started.`,
+    
+    /*eslint no-unused-vars: ["error", { "args": "none" }]*/
     async execute(message, args) {
         const msg = library.Helper.sendStandardWaitMessage(message.channel);
 
