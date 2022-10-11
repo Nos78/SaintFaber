@@ -2,7 +2,7 @@
  * @Author: BanderDragon
  * @Date: 2019-03-10 02:54:40 
  * @Last Modified by: Noscere
- * @Last Modified time: 2022-10-10 16:41:18
+ * @Last Modified time: 2022-10-11 03:59:59
  */
 
 // Configure the Discord bot client
@@ -104,7 +104,7 @@ client.on("ready", () => {
     library.Commands.resolveCommandDescriptions(client);
 
     // Update the bot activity text to reflect the connections status
-    client.user.setActivity(`${client.guilds.cache.size} guilds | ${config.prefix}datahelp`, { type: 'WATCHING' });
+    client.user.setActivity(`${client.guilds.cache.size} guilds | ${config.prefix}${config.helpcommand}`, { type: 'WATCHING' });
     logger.info(`${client.user.username} Bot has started, with ${client.users.cache.size} users, in ${client.channels.size} channels of ${client.guilds.cache.size} guilds.`);
 
     /* We want to ensure our database is created when the bot comes online
@@ -306,8 +306,8 @@ client.on('message', async message => {
                 found = true;
             }
             
-            if(!found && !message.content.startsWith(config.prefix + 'datahelp')) {
-                var helpCmd = client.commands.get('datahelp');
+            if(!found && !message.content.startsWith(config.prefix + config.helpcommand)) {
+                var helpCmd = client.commands.get(config.helpCommand);
                 for(let i=0; i < helpCmd.aliases.length; i++) {
                     if(message.content.startsWith(config.prefix + helpCmd.aliases[i])) {
                         found = true;
