@@ -2,7 +2,7 @@
  * @Author: BanderDragon
  * @Date: 2019-03-10 02:54:40 
  * @Last Modified by: Noscere
- * @Last Modified time: 2022-10-11 03:59:59
+ * @Last Modified time: 2022-10-11 23:16:15
  */
 
 // Configure the Discord bot client
@@ -64,7 +64,7 @@ var me = false;
 try {
     client.deleteCallingCommand = config.deleteCallingCommand
 } catch (error) {
-    logger.info(`Failed to access config.deleteCallingCommand; update your config.json with this member.  Error: ${JSON.stringify(error)}`);
+    logger.info(`Failed to access config.deleteCallingCommand; update your config with this member.  Error: ${JSON.stringify(error)}`);
     client.deleteCallingCommand = false;
 }
 
@@ -105,7 +105,7 @@ client.on("ready", () => {
 
     // Update the bot activity text to reflect the connections status
     client.user.setActivity(`${client.guilds.cache.size} guilds | ${config.prefix}${config.helpcommand}`, { type: 'WATCHING' });
-    logger.info(`${client.user.username} Bot has started, with ${client.users.cache.size} users, in ${client.channels.size} channels of ${client.guilds.cache.size} guilds.`);
+    logger.info(`${client.user.username} Bot has started, with ${client.users.cache.size} users, in ${client.channels.cache.size} channels of ${client.guilds.cache.size} guilds.`);
 
     /* We want to ensure our database is created when the bot comes online
      * and configure it if they don't exist...
@@ -119,77 +119,57 @@ client.on("ready", () => {
      */
 
     // Create Discord User table
-    db.users.exists()
-        .then(data => {
-            if (data.rows[0].exists == false) {
-                // Database does not exist, lets create it...
-                logger.debug(`No database users table found!  Creating...`);
-                db.users.create();
-                logger.debug(`Users configured.`)
-            }
-        });
+    if (!db.users.exists()) {
+        // Database does not exist, lets create it...
+        logger.debug(`No database users table found!  Creating...`);
+        db.users.create();
+        logger.debug(`Users configured.`)
+    }
 
     // Create Discord guild (server) table
-    db.guilds.exists()
-        .then(data => {
-            if (data.rows[0].exists == false) {
-                // Database does not exist, lets create it...
-                logger.debug(`No database users table found!  Creating...`);
-                db.guilds.create();
-                logger.debug(`Guilds configured.`)
-            }
-        });
+    if (!db.guilds.exists()) {
+        // Database does not exist, lets create it...
+        logger.debug(`No database users table found!  Creating...`);
+        db.guilds.create();
+        logger.debug(`Guilds configured.`)
+    }
 
     // Configure Albion Online tables
 
-    db.aoguilds.exists()
-        .then(data => {
-            if (data.rows[0].exists == false) {
-                logger.debug(`No database ao_guilds table found!  Creating...`);
-                db.aoguilds.create();
-                logger.debug(`ao_guilds configured.`);
-            }
-        });
+    if (!db.aoguilds.exists()) {
+        logger.debug(`No database ao_guilds table found!  Creating...`);
+        db.aoguilds.create();
+        logger.debug(`ao_guilds configured.`);
+    }
 
-    db.aoplayers.exists()
-        .then(data => {
-            if (data.rows[0].exists == false) {
-                // Database does not exist, lets create it...
-                logger.debug(`No database ao_players table found!  Creating...`);
-                db.aoplayers.create();
-                logger.debug(`ao_players configured.`);
-            }
-        });
+    if (!db.aoplayers.exists()) {
+        // Database does not exist, lets create it...
+        logger.debug(`No database ao_players table found!  Creating...`);
+        db.aoplayers.create();
+        logger.debug(`ao_players configured.`);
+    }
 
-    db.userGlobalSettings.exists()
-        .then(data => {
-            if(data.rows[0].exists == false) {
-                // Table does not exists, lets create it...
-                logger.debug(`No userGlobalSettings table found!  Creating...`);
-                db.userGlobalSettings.create();
-                logger.debug(`userGlobalSettings configured.`);
-            }
-        });
+    if (!db.userGlobalSettings.exists()) {
+        // Table does not exists, lets create it...
+        logger.debug(`No userGlobalSettings table found!  Creating...`);
+        db.userGlobalSettings.create();
+        logger.debug(`userGlobalSettings configured.`);
+    }
 
-    db.userGuildSettings.exists()
-        .then(data => {
-            if(data.rows[0].exists == false) {
-                // Table does not exists, lets create it...
-                logger.debug(`No userGuildSettings table found!  Creating...`);
-                db.userGuildSettings.create();
-                logger.debug(`userGuildSettings configured.`);
-            }
-        });
+    if (!db.userGuildSettings.exists()) {
+        // Table does not exists, lets create it...
+        logger.debug(`No userGuildSettings table found!  Creating...`);
+        db.userGuildSettings.create();
+        logger.debug(`userGuildSettings configured.`);
+    }
 
-    db.guildSettings.exists()
-        .then(data => {
-            if(data.rows[0].exists == false) {
-                // Table does not exists, lets create it...
-                logger.debug(`No guildSettings table found!  Creating...`);
-                db.guildSettings.create();
-                logger.debug(`guildSettings configured.`);
-            }
-        });
+    if (!db.guildSettings.exists()) {
+        // Table does not exists, lets create it...
+        logger.debug(`No guildSettings table found!  Creating...`);
+        db.guildSettings.create();
+        logger.debug(`guildSettings configured.`);
+    }
+
     /* Populate the database with the guilds we are online in. */
     //for (x = 0; x < client.guilds.cache.size; x++) {
     client.guilds.cache.forEach((guild) => {
