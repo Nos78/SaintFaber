@@ -2,7 +2,7 @@
  * @Author: BanderDragon 
  * @Date: 2020-09-01 01:22:19 
  * @Last Modified by: Noscere
- * @Last Modified time: 2022-10-12 01:50:04
+ * @Last Modified time: 2022-10-12 16:30:27
  */
 
 'use strict';
@@ -51,11 +51,25 @@ class UserGuildSettingsRepository {
     }
 
     /**
-     * @description Check if the user_guild_settings table exists.
-     * @returns {Promise<Result>} the result of the query, with a boolean 'exists' field.
-     * @memberof UserGuildSettingsRepository
+     * Calls the queryExists() method to see if the table exists.
+     * 
+     * @returns {Boolean} true or false depending on whether the table exists.
      */
-    exists() {
+     async exists() {
+        var exists = await this.queryExists();
+        return exists;
+    }
+
+    /**
+     * Queries the database to see if the table exists. When the result is returned, the reuslt is
+     * extracted from the 'exists' field within the query, that contains true/false depending on if
+     * the table exists.
+     * 
+     * @returns {Promise<QueryResultError>} this.db.task returns a query containing a boolean exists
+     *          field. This async call can return a Promise. Once the promise is returned, this
+     *          function will return a boolean.
+     */
+    queryExists() {
         var exist = this.db.task(t => {
             return t.result(sql.exists, [])
                 .then(retval => {
