@@ -1,13 +1,15 @@
 /*
  * @Author: BanderDragon 
  * @Date: 2020-09-01 01:13:33 
- * @Last Modified by: BanderDragon
- * @Last Modified time: 2020-09-01 02:23:49
+ * @Last Modified by: Noscere
+ * @Last Modified time: 2022-10-12 01:17:57
  */
 
 'use strict';
 
 const sql = require('../sql').user_global_settings;
+
+const Logger = require('winston');
 
 const cs = {}; // Reusable ColumnSet objects.
 
@@ -45,16 +47,48 @@ class UserGlobalSettingsRepository {
      * @memberof UserGlobalSettingsRepository
      */
     create() {
-        return this.db.none(sql.create);
+        var created = this.db.task(t => {
+            return t.none(sql.create)
+                .then(retval => {
+                    return retval;
+                })
+        }).then(r => {
+            // success
+            return r;
+        }).catch(e => {
+            Logger.info(`An error occurred in user_global_settings create()`);
+            Logger.error(e);
+        });
+        return created;
     }
 
     /**
      * @description Check if the user_global_settings table exists.
-     * @returns {Promise<Result>} the result of the query, with a boolean 'exists' field.
+     * The {Promise<Result>} result of the query contains an exists field, with a boolean value
+     * @returns boolean result true or false whether the table exists.
      * @memberof UserGlobalSettingsRepository
      */
     exists() {
-        return this.db.result(sql.exists, []);
+        var exist = this.db.task(t => {
+            return t.result(sql.exists, [])
+                .then(retval => {
+                    return retval
+            });
+        }).then(r => {
+            // success
+            return r;
+        }).catch(e => {
+            Logger.info(`An error occurred in guilds exists()`);
+            Logger.error(e);
+        });
+
+        // successful result() returns the query result with a boolean field, 'exists'
+        // some logic error check first (exist shouldnt be null)
+        if(exist) {
+            return exist.rows[0].exists;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -64,7 +98,19 @@ class UserGlobalSettingsRepository {
      * @memberof UserGlobalSettingsRepository
      */
     drop() {
-        return this.db.none('DROP TABLE user_global_settings');
+        var dropped = this.db.task(t => {
+            return t.none('DROP TABLE user_global_settings')
+                .then(retval => {
+                    return retval;
+            });
+        }).then(r => {
+            // success
+            return r;
+        }).catch(e => {
+            Logger.info(`An error occurred in user_global_settings drop()`);
+            Logger.error(e);
+        });
+        return dropped;
     }
 
     /**
@@ -75,7 +121,19 @@ class UserGlobalSettingsRepository {
      * @memberof UserGlobalSettingsRepository
      */
     empty() {
-        return this.db.none(sql.empty);
+        var emptied = this.db.task(t => {
+            return t.none(sql.empty)
+                .then(retval => {
+                    return retval;
+            });
+        }).then(r => {
+            // sucess
+            return r;
+        }).catch(e => {
+            Logger.info(`An error occurred in user_global_settings empty()`);
+            Logger-error(e);
+        });
+        return emptied;
     }
 
     // ************************************************************************
@@ -94,7 +152,19 @@ class UserGlobalSettingsRepository {
      * @memberof UserGlobalSettingsRepository
      */
     add(userId, settings) {
-        return this.db.oneOrNone(sql.insert, {uId: userId, settings: settings});
+        var added = this.db.task(t => {
+            return t.oneOrNone(sql.insert, {uId: userId, settings: settings})
+                .then(retval => {
+                    return retval;
+            });
+        }).then(r => {
+            // success
+            return r;
+        }).catch(e => {
+            Logger.info(`An error occurred in user_global_settings add(${user_id}, ${JSON.stringify(settings)})`);
+            Logger.error(e);
+        });
+        return added;
     }
 
     /**
@@ -133,10 +203,21 @@ class UserGlobalSettingsRepository {
      * @memberof UserGlobalSettingsRepository
      */
     update(userId, settings) {
-        return this.db.one(sql.update, {
-            userDiscordId: userId,
-            settings: settings
+        var updated = this.db.task(t => {
+            return t.one(sql.update, {
+                        userDiscordId: userId,
+                        settings: settings})
+                .then(retval => {
+                    return retval;
+            });
+        }).then(r => {
+            // success
+            return r;
+        }).catch(e => {
+            Logger.info(`An error occurred in user_global_settings update(${userId}, ${JSON.stringify(settings)})`);
+            Logger.error(e);
         });
+        return updated;
     }
 
     /**
@@ -146,7 +227,19 @@ class UserGlobalSettingsRepository {
      * @memberof UserGlobalSettingsRepository
      */
     remove(userId) {
-        return this.db.result(sql.remove, +userId, r => r.rowCount);
+        var removed = this.db.task(t => {
+            return t.result(sql.remove, +userId, r => r.rowCount)
+                .then(retval => {
+                    return retval;
+            });
+        }).then(r => {
+            // success
+            return r;
+        }).catch(e => {
+            Logger.info(`An error occurred in user_global_settings remove(${userId})`);
+            Logger.error(e);
+        });
+        return removed;
     }
 
     // ************************************************************************
@@ -160,8 +253,20 @@ class UserGlobalSettingsRepository {
      * @returns {Promise<Result>} On resolution of the promise, returns the row
      * or null. A failure produces a QueryResultError.
      */
-    finduserSettingsById(userId) {
-        return this.db.oneOrNone(sql.find, userId);
+    findUserSettingsById(userId) {
+        var foundUserSettingsById = this.db.task(t => {
+            return t.oneOrNone(sql.find, userId)
+                .then(retval => {
+                    return retval;
+            });
+        }).then(r => {
+            // success
+            return r;
+        }).catch(e => {
+            Logger.info(`An error occurred in user_global_settings findUserSettingsById(${userId})`);
+            Logger.error(e);
+        });
+        return foundUserSettingsById;
     }
 
     /**
@@ -171,7 +276,19 @@ class UserGlobalSettingsRepository {
      * @memberof UserGlobalSettingsRepository
      */
     all() {
-        return this.db.any('SELECT * FROM user_global_settings ugs JOIN users u ON u.id = ugs.u_id');
+        var allRecords = this.db.task(t => {
+            return t.any('SELECT * FROM user_global_settings ugs JOIN users u ON u.id = ugs.u_id')
+                .then(retval => {
+                    return retval;
+            });
+        }).then(r => {
+            // success
+            return r;
+        }).catch(e => {
+            Logger.info(`An error occurred in user_global_settings all()`);
+            Logger.error(e);
+        });
+        return allRecords;
     }
     
     // ************************************************************************
@@ -181,7 +298,19 @@ class UserGlobalSettingsRepository {
 
     // Returns the total number of user_global_settings;
     total() {
-        return this.db.one('SELECT count(*) FROM user_global_settings', [], a => +a.count);
+        var totalCount = this.db.task(t => {
+            return t.one('SELECT count(*) FROM user_global_settings', [], a => +a.count)
+                .then(retval => {
+                    return retval;
+                })
+        }).then(r => {
+            // success
+            return r;
+        }).catch(e => {
+            Logger.info(`An error occrred in user-global_settings total()`);
+            Logger.error(e);
+        });
+        return totalCount;
     }
 }
 

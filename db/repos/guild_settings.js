@@ -1,11 +1,13 @@
 /*
  * @Author: BanderDragon 
  * @Date: 2020-08-31 20:55:32
- * @Last Modified by: BanderDragon
- * @Last Modified time: 2020-09-04 23:00:21
+ * @Last Modified by: Noscere
+ * @Last Modified time: 2022-10-12 01:38:04
  */
 
 'use strict';
+
+const Logger = require('winston');
 
 const sql = require('../sql').guild_settings;
 
@@ -37,6 +39,20 @@ class GuildSettingsRepository {
     // Create, drop, empty and check if 'guild_settings' table exists.
     // ************************************************************************
 
+    promiseState (p) {
+        /* var a = Promise.resolve();
+           var b = Promise.reject();
+           var c = new Promise(() => {});
+           
+           promiseState(a).then(state => console.log(state)); // fulfilled
+           promiseState(b).then(state => console.log(state)); // rejected
+           promiseState(c).then(state => console.log(state)); // pending
+        */
+        const t = {};
+        return Promise.race([p, t])
+            .then(v => (v === t)? "pending" : "fulfilled", () => "rejected");
+    }
+
     /**
      * @description Creates the guild_settings table using the defined SQL query. A successful call
      * to this function, once the promise is completed, should return no data. Any data returned by
@@ -45,16 +61,49 @@ class GuildSettingsRepository {
      * @memberof GuildSettingsRepository
      */
     create() {
-        return this.db.none(sql.create);
+        var created = this.db.task(t => {
+            return t.none(sql.create)
+                .then(retval => {
+                    return retval;
+                });
+        }).then(r => {
+            // success
+            return r;
+        }).catch(e => {
+            Logger.info(`An error occurred in guild_settings create()`);
+            Logger.error(e);
+        });
+        return created;
     }
 
     /**
-     * @description Check if the guild_settings table exists.
-     * @returns {Promise<Result>} the result of the query, with a boolean 'exists' field.
+     * @description Check if the guild_settings table exists. The database query will
+     * give a {Promise<Result>} the result of the query, with a boolean 'exists' field.
+     * Instead of returning this object, this function returns this boolean field directly
+     * @returns Boolean true or false if the table exists.
      * @memberof GuildSettingsRepository
      */
     exists() {
-        return this.db.result(sql.exists, []);
+        var exist = this.db.task(t => {
+            return t.result(sql.exists, [])
+                .then(retval => {
+                    return retval;
+            });
+        }).then(r => {
+            // success
+            return r;
+        }).catch(e => {
+            Logger.info(`An error occurred in guild_settings exists()`);
+            Logger.error(e);
+        });
+
+        // successful result() returns the query result with a boolean field, 'exists'
+        // some logic error check first (exist shouldnt be null)
+        if(exist) {
+            return exist.rows[0].exists;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -64,7 +113,19 @@ class GuildSettingsRepository {
      * @memberof GuildSettingsRepository
      */
     drop() {
-        return this.db.none('DROP TABLE guild_settings');
+        var dropped = this.db.task(t => {
+            return t.none('DROP TABLE guild_settings')
+                .then(retval => {
+                    return retval;
+            });
+        }).then(r => {
+            // success
+            return r;
+        }).catch(e => {
+            Logger.info(`An error occurred in guild_settings drop()`);
+            Logger.error(e);
+        });
+        return dropped;
     }
 
     /**
@@ -75,7 +136,19 @@ class GuildSettingsRepository {
      * @memberof GuildSettingsRepository
      */
     empty() {
-        return this.db.none(sql.empty);
+        var emptied = this.db.task(t => {
+            return t.none(sql.empty)
+                .then(retval => {
+                    return retval;
+            });
+        }).then(r => {
+            // success
+            return r;
+        }).catch(e => {
+            Logger.info(`An error occurred in guild_settings empty()`);
+            Logger.error(e);
+        });
+        return emptied
     }
 
     // ************************************************************************
@@ -94,7 +167,19 @@ class GuildSettingsRepository {
      * @memberof GuildSettingsRepository
      */
     add(guildId, settings) {
-        return this.db.oneOrNone(sql.insert, {guildDiscordId: guildId, settings: settings});
+        var added = this.db.task(t => {
+            return t.oneOrNone(sql.insert, {guildDiscordId: guildId, settings: settings})
+                .then(retval => {
+                    return retval;
+            });
+        }).then(r => {
+            //success
+            return r;
+        }).catch(e => {
+            Logger.info(`An error occurred in guild_settings add(${guildId}, ${JSON.stringify(settings)})`);
+            Logger.error(e);
+        });
+        return added;
     }
 
     /**
@@ -132,10 +217,21 @@ class GuildSettingsRepository {
      * @memberof GuildSettingsRepository
      */
     update(guildId, settings) {
-        return this.db.one(sql.update, {
-            guildDiscordId: guildId,
-            settings: settings
+        var update = this.db.task(t => {
+            return t.one(sql.update, {
+                        guildDiscordId: guildId,
+                        settings: settings})
+                .then(retval => {
+                    return retval;
+            });
+        }).then(r => {
+            //success
+            return r;
+        }).catch(e => {
+            Logger.info(`An error occurred in guild_settings update(${guildId}, ${JSON.stringify(settings)})`);
+            Logger.error(e);
         });
+        return update;
     }
 
     /**
@@ -145,7 +241,19 @@ class GuildSettingsRepository {
      * @memberof GuildSettingsRepository
      */
     remove(guildId) {
-        return this.db.result(sql.remove, +guildId, r => r.rowCount);
+        var removed = this.db.task(t => {
+            return t.result(sql.remove, +guildId, r => r.rowCount)
+                .then(retval => {
+                    return retval;
+            });
+        }).then(res => {
+            // success
+            return res;
+        }).catch(e => {
+            Logger.info(`An error occurred in guild_settings remove(${guildId})`);
+            Logger.error(e);
+        });
+        return removed;
     }
 
     // ************************************************************************
@@ -160,7 +268,19 @@ class GuildSettingsRepository {
      * or null. A failure produces a QueryResultError.
      */
     findGuildSettingsById(guildId) {
-        return this.db.oneOrNone(sql.find, guildId);
+        var result = this.db.task(t => {
+            return t.oneOrNone(sql.find, guildId)
+                .then(retval => {
+                    return retval;
+            });
+        }).then(r => {
+            // success
+            return r;
+        }).catch(e => {
+            Logger.info(`An error occurred in guild_settings findGuildById(${guildId}`);
+            Logger.error(e);
+        });
+        return result;
     }
 
     /**
@@ -170,7 +290,19 @@ class GuildSettingsRepository {
      * @memberof GuildSettingsRepository
      */
     all() {
-        return this.db.any('SELECT * FROM guild_settings gs JOIN guilds g ON g.id = gs.g_id');
+        var allObj = this.db.task(t => {
+            return t.any('SELECT * FROM guild_settings gs JOIN guilds g ON g.id = gs.g_id')
+                .then(retval => {
+                    return retval;
+            });
+        }).then(r => {
+            // success
+            return r;
+        }).catch(e => {
+            Logger.info(`An error occurred in guild_settings add()`);
+            Logger.error(e);
+        });
+        return allObj;
     }
     
     // ************************************************************************
@@ -180,7 +312,19 @@ class GuildSettingsRepository {
 
     // Returns the total number of guild_settings;
     total() {
-        return this.db.one('SELECT count(*) FROM guild_settings', [], a => +a.count);
+        var totalRecords = this.db.task(t => {
+            return t.one('SELECT count(*) FROM guild_settings', [], a => +a.count)
+                .then(retval => {
+                    return retval;
+            });
+        }).then(r => {
+            // success
+            return r;
+        }).catch(e => {
+            Logger.info(`An error occurred in guild_settings total()`);
+            Logger.error(e);
+        });
+        return totalRecords;
     }
 }
 

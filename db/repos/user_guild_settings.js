@@ -1,13 +1,13 @@
 /*
  * @Author: BanderDragon 
  * @Date: 2020-09-01 01:22:19 
- * @Last Modified by: BanderDragon
- * @Last Modified time: 2020-09-02 19:57:16
+ * @Last Modified by: Noscere
+ * @Last Modified time: 2022-10-12 01:27:53
  */
 
 'use strict';
 
-const { loggers } = require('winston');
+const Logger = require('winston');
 
 const sql = require('../sql').user_guild_settings;
 
@@ -56,7 +56,26 @@ class UserGuildSettingsRepository {
      * @memberof UserGuildSettingsRepository
      */
     exists() {
-        return this.db.result(sql.exists, []);
+        var exist = this.db.task(t => {
+            return t.result(sql.exists, [])
+                .then(retval => {
+                    return retval
+            });
+        }).then(r => {
+            // success
+            return r;
+        }).catch(e => {
+            Logger.info(`An error occurred in guilds exists()`);
+            Logger.error(e);
+        });
+
+        // successful result() returns the query result with a boolean field, 'exists'
+        // some logic error check first (exist shouldnt be null)
+        if(exist) {
+            return exist.rows[0].exists;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -66,7 +85,19 @@ class UserGuildSettingsRepository {
      * @memberof UserGuildSettingsRepository
      */
     drop() {
-        return this.db.none('DROP TABLE user_guild_settings');
+        var dropped = this.db.task(t => {
+            return t.none('DROP TABLE user_guild_settings')
+                .then(retval => {
+                    return retval;
+            });
+        }).then(r => {
+            // success
+            return r;
+        }).catch(e => {
+            Logger.info(`An error occurred in user_guild_settings drop()`);
+            Logger.error(e);
+        });
+        return dropped;
     }
 
     /**
@@ -77,7 +108,19 @@ class UserGuildSettingsRepository {
      * @memberof UserGuildSettingsRepository
      */
     empty() {
-        return this.db.none(sql.empty);
+        var emptied = this.db.task(t => {
+            return t.none(sql.empty)
+                .then(retval => {
+                    return retval;
+            });
+        }).then(r => {
+            // success
+            return r;
+        }).catch(e => {
+            Logger.info(`An error occurred in user_guild_settings empty()`);
+            Logger.error(e);
+        });
+        return emptied;
     }
 
     // ************************************************************************
@@ -97,10 +140,22 @@ class UserGuildSettingsRepository {
      * @memberof UserGuildSettingsRepository
      */
     add(userId, guildId, settings) {
-        return this.db.oneOrNone(sql.insert, {
-            userDiscordId: userId,
-            guildDiscordId: guildId,
-            settings: settings});
+        var added = this.db.task(t => {
+            return t.oneOrNone(sql.insert, {
+                        userDiscordId: userId,
+                        guildDiscordId: guildId,
+                        settings: settings})
+                .then(retval => {
+                    return retval;
+            });
+        }).then(r => {
+            // success
+            return r;
+        }).catch(e => {
+            Logger.info(`An error occurred in user_guild_settings add(${userId}, ${guildId}, ${JSON.stringify(settings)})`);
+            Logger.error(e);
+        });
+        return added;
     }
 
     /**
@@ -126,7 +181,7 @@ class UserGuildSettingsRepository {
      */
     upsert(userId, guildId, settings) {
         if(!userId || !guildId) {
-            loggers.error(`userGuildSettings - upsert(${userId}, ${guildId} - null parameter detected`);
+            Logger.error(`userGuildSettings - upsert(${userId}, ${guildId} - null parameter detected`);
             return null;
         } else {
             return this.add(userId, guildId, settings)
@@ -147,11 +202,22 @@ class UserGuildSettingsRepository {
      * @memberof UserGuildSettingsRepository
      */
     update(userId, guildId, settings) {
-        return this.db.one(sql.update, {
-            userDiscordId: userId,
-            guildDiscordId: guildId,
-            settings: settings
+        var updated = this.db.task(t => {
+            return t.one(sql.update, {
+                        userDiscordId: userId,
+                        guildDiscordId: guildId,
+                        settings: settings})
+                .then(retval => {
+                    return retval;
+            });
+        }).then(r => {
+            // success
+            return r;
+        }).catch(e => {
+            Logger.info(`An error occurred in user_guild_settings update(${userId}, ${guildId}, ${JSON.stringify(settings)})`);
+            Logger.error(e);
         });
+        return updated;
     }
 
     /**
@@ -161,7 +227,19 @@ class UserGuildSettingsRepository {
      * @memberof UserGuildSettingsRepository
      */
     removeAllByUserId(userId) {
-        return this.db.result(sql.removeByUserId, +userId, r => r.rowCount);
+        var removedAllByUserId = this.db.task(t => {
+            return t.result(sql.removeByUserId, +userId, r => r.rowCount)
+                .then(retval => {
+                    return retval;
+            });
+        }).then(r => {
+            // success
+            return r;
+        }).catch(e => {
+            Logger.info(`An error occurred in user_guild_settings removeAllByUserId(${userId})`);
+            Logger.error(e);
+        });
+        return removedAllByUserId;
     }
 
     /**
@@ -171,7 +249,19 @@ class UserGuildSettingsRepository {
      * @memberof UserGuildSettingsRepository
      */
     removeAllByGuildId(guildId) {
-        return this.db.result(sql.removeByGuildId, +guildId, r => r.rowCount);
+        var removedAllByGuildId = this.db.task(t => {
+            return t.result(sql.removeByGuildId, +guildId, r => r.rowCount)
+                .then(retval => {
+                    return retval;
+            });
+        }).then(r => {
+            // success
+            return r;
+        }).catch(e => {
+            Logger.info(`An error occurred in user_guild_settings removeAllByGuildId(${guildId})`);
+            Logger.error(e);
+        });
+        return removedAllByGuildId;
     }
 
     /**
@@ -182,12 +272,19 @@ class UserGuildSettingsRepository {
      * @memberof UserGuildSettingsRepository
      */
     remove(userId, guildId) {
-        return this.db.result(sql.remove,
-            {
-                userDiscordId: userId,
-                guildDiscordId: guildId
-            },
-            r => r.rowCount);
+        var removed = this.db.task(t => {
+            return t.result(sql.remove, { userDiscordId: userId, guildDiscordId: guildId }, r => r.rowCount)
+                .then(retval => {
+                    return retval;
+            });
+        }).then(r => {
+            // success
+            return r;
+        }).catch(e => {
+            Logger.info(`An error occurred in user_guild_settings remove(${userId}, ${guildId})`);
+            Logger.error(e);
+        });
+        return removed;
     }
 
     // ************************************************************************
@@ -203,7 +300,19 @@ class UserGuildSettingsRepository {
      * or null. A failure produces a QueryResultError.
      */
     findUserSettingsById(userId, guildId) {
-        return this.db.oneOrNone(sql.find, {userDiscordId: userId, guildDiscordId: guildId});
+        var foundUserSettingsById = this.db.task(t => {
+            return t.oneOrNone(sql.find, {userDiscordId: userId, guildDiscordId: guildId})
+                .then(retval => {
+                    return retval;
+            });
+        }).then(r => {
+            // success
+            return r;
+        }).catch(e => {
+            Logger.info(`An error occurred in user_guild_settings findUserSettingsById(${userId}, ${guildId})`);
+            Logger.error(e);
+        });
+        return foundUserSettingsById;
     }
 
     /**
@@ -213,7 +322,19 @@ class UserGuildSettingsRepository {
      * @memberof UserGuildSettingsRepository
      */
     all() {
-        return this.db.any('SELECT * FROM user_guild_settings ugs JOIN users u ON u.id = ugs.u_id');
+        var allRecords = this.db.task(t => {
+            return t.any('SELECT * FROM user_guild_settings ugs JOIN users u ON u.id = ugs.u_id')
+                .then(retval => {
+                    return retval;
+            });
+        }).then(r => {
+            // success
+            return r;
+        }).catch(e => {
+            Logger.info(`An error occurred in user_guild_settings all()`);
+            Logger.error(e);
+        });
+        return allRecords;
     }
     
     // ************************************************************************
@@ -223,7 +344,19 @@ class UserGuildSettingsRepository {
 
     // Returns the total number of user_guild_settings;
     total() {
-        return this.db.one('SELECT count(*) FROM user_guild_settings', [], a => +a.count);
+        var totalCount = this.db.task(t => {
+            return t.one('SELECT count(*) FROM user_guild_settings', [], a => +a.count)
+                .then(retval => {
+                    return retval;
+            });
+        }).then(r => {
+            // success
+            return r;
+        }).catch(e => {
+            Logger.info(`An error occurred in user_guild_settings total()`);
+            Logger.error(e);
+        });
+        return totalCount;
     }
 }
 
