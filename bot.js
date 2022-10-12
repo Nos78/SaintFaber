@@ -2,7 +2,7 @@
  * @Author: BanderDragon
  * @Date: 2019-03-10 02:54:40 
  * @Last Modified by: Noscere
- * @Last Modified time: 2022-10-11 23:16:15
+ * @Last Modified time: 2022-10-12 02:06:05
  */
 
 // Configure the Discord bot client
@@ -95,7 +95,7 @@ try {
 //
 // bot.on ready - used when the bot comes online
 //
-client.on("ready", () => {
+client.on("ready", async () => {
     logger.info('Connected');
     logger.info('Logged in as: ');
     logger.info(client.user.username + ' - (' + client.user.id + ')');
@@ -119,7 +119,9 @@ client.on("ready", () => {
      */
 
     // Create Discord User table
-    if (!db.users.exists()) {
+    var exists = await db.users.exists();
+
+    if (!exists) {
         // Database does not exist, lets create it...
         logger.debug(`No database users table found!  Creating...`);
         db.users.create();
@@ -127,7 +129,8 @@ client.on("ready", () => {
     }
 
     // Create Discord guild (server) table
-    if (!db.guilds.exists()) {
+    exists = await db.users.exists();
+    if (!exists) {
         // Database does not exist, lets create it...
         logger.debug(`No database users table found!  Creating...`);
         db.guilds.create();
@@ -135,35 +138,39 @@ client.on("ready", () => {
     }
 
     // Configure Albion Online tables
-
-    if (!db.aoguilds.exists()) {
+    exists = await db.aoguilds.exists();
+    if (!exists) {
         logger.debug(`No database ao_guilds table found!  Creating...`);
         db.aoguilds.create();
         logger.debug(`ao_guilds configured.`);
     }
 
-    if (!db.aoplayers.exists()) {
+    exists = await db.aoplayers.exists();
+    if (!exists) {
         // Database does not exist, lets create it...
         logger.debug(`No database ao_players table found!  Creating...`);
         db.aoplayers.create();
         logger.debug(`ao_players configured.`);
     }
 
-    if (!db.userGlobalSettings.exists()) {
+    exists = await db.userGlobalSettings.exists();
+    if (!exists) {
         // Table does not exists, lets create it...
         logger.debug(`No userGlobalSettings table found!  Creating...`);
         db.userGlobalSettings.create();
         logger.debug(`userGlobalSettings configured.`);
     }
 
-    if (!db.userGuildSettings.exists()) {
+    exists = await db.userGuildSettings.exists();
+    if (!exists) {
         // Table does not exists, lets create it...
         logger.debug(`No userGuildSettings table found!  Creating...`);
         db.userGuildSettings.create();
         logger.debug(`userGuildSettings configured.`);
     }
 
-    if (!db.guildSettings.exists()) {
+    exists = await db.guildSettings.exists();
+    if (!exists) {
         // Table does not exists, lets create it...
         logger.debug(`No guildSettings table found!  Creating...`);
         db.guildSettings.create();

@@ -52,19 +52,20 @@ class UsersRepository {
             });
         }).then(r => {
             // success
-            return r;
+            
+            // successful result() returns the query result with a boolean field, 'exists'
+            // some logic error check first (exist shouldn't be null)
+            if(r && r.rows) {
+                return r.rows[0].exists;
+            } else {
+                return false;
+            }
         }).catch(e => {
             Logger.info(`An error occurred in guilds exists()`);
             Logger.error(e);
         });
 
-        // successful result() returns the query result with a boolean field, 'exists'
-        // some logic error check first (exist shouldnt be null)
-        if(exist) {
-            return exist.rows[0].exists;
-        } else {
-            return false;
-        }
+        return exist;
     }
 
     // Drops the table;

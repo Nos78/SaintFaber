@@ -2,7 +2,7 @@
  * @Author: Noscere 
  * @Date: 2022-10-09 18:28:45 
  * @Last Modified by: Noscere
- * @Last Modified time: 2022-10-12 01:28:02
+ * @Last Modified time: 2022-10-12 01:52:31
  */
 
 'use strict';
@@ -51,19 +51,20 @@ class AOPlayersRepository {
             });
         }).then(r => {
             // success
-            return r;
+            
+            // successful result() returns the query result with a boolean field, 'exists'
+            // some logic error check first (exist shouldn't be null)
+            if(r && r.rows) {
+                return r.rows[0].exists;
+            } else {
+                return false;
+            }
         }).catch(e => {
             Logger.info(`An error occurred in ao_guilds exists()`);
             Logger.error(e);
         });
 
-        // successful result() returns the query result with a boolean field, 'exists'
-        // some logic error check first (exist shouldnt be null)
-        if(exist) {
-            return exist.rows[0].exists;
-        } else {
-            return false;
-        }
+        return exist;
     }
 
     // Drops the table;
