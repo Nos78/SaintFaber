@@ -2,7 +2,7 @@
  * @Author: BanderDragon 
  * @Date: 2020-08-29 02:51:12 
  * @Last Modified by: Noscere
- * @Last Modified time: 2022-10-11 03:25:09
+ * @Last Modified time: 2022-10-11 04:55:47
  *
  * Command to return information on a given discord user.
  * the user queried must be a member of the server.
@@ -60,7 +60,7 @@ module.exports = {
             }
             if(member.roles) {
                 var roles = [];
-                member.roles.forEach(function(role) {
+                member.roles.cache.forEach(function(role) {
                     roles.push(role.name);
                 });
                 fields.push({"name": `Roles`, "value": `${member.roles.size} - ${JSON.stringify(roles)}`});

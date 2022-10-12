@@ -2,17 +2,19 @@
  * @Author: BanderDragon 
  * @Date: 2020-08-27 21:33:10 
  * @Last Modified by: Noscere
- * @Last Modified time: 2022-10-11 03:24:24
+ * @Last Modified time: 2022-10-11 04:40:14
  * 
  * Provides information on the systems of the bot, such as operating system,
  * software version numbers, host, uptime, etc.
  */
 
+const { useCustomLoadavg } = require('loadavg-windows');
 const os = require('os');
 
 const pkg = require('../package.json');
 const library = require('../library');
 const moment = require('moment');
+const momentTz = require('moment-timezone');
 const process = require('process');
 
 module.exports = {
