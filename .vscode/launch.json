@@ -12,7 +12,8 @@
                 "<node_internals>/**"
             ],
             "type": "node",
-            "outputCapture": "std"
+            "outputCapture": "std",
+            "runtimeArgs": ["--trace-warnings"]
         }
     ]
 }
