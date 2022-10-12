@@ -1,0 +1,22 @@
+[Unit]
+Description=Saint Saber (instance %i). An Albion Online Discord assistant bot.
+Documentation=https://github.com/Nos78/SaintFaber/blob/main/README.md
+After=multi-user.target
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/noscerevelle/src/SaintSaber
+ExecStart=/usr/local/bin/node /home/noscerevelle/src/SaintSaber/bot.js
+Restart=on-failure
+RestartSec=500ms
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=saintsaber
+User=www-data
+Group=www-data
+
+[Install]
+WantedBy=multi-user.target
+
