@@ -1,5 +1,5 @@
 [Unit]
-Description=Saint Saber (instance %i). An Albion Online Discord assistant bot.
+Description=Saint Saber - An Albion Online Discord assistant bot.
 Documentation=https://github.com/Nos78/SaintFaber/blob/main/README.md
 After=multi-user.target
 After=network-online.target
